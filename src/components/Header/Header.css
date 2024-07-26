@@ -1,0 +1,62 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .company-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 2rem;
+    padding: 3px;
+    border: 1px solid rgb(25, 219, 25);
+    color: #868686;
+    border-radius: 5px;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    margin-right: 1rem;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-link {
+    text-decoration: none;
+    color: #333;
+    margin-right: 1rem;
+  }
+  
+  .logout-button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* .logout-button:hover {
+    background-color: #0056b3;
+  } */

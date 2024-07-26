@@ -1,0 +1,32 @@
+.sidebar {
+    min-width: 200px;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .category-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-list li {
+    margin-bottom: 10px;
+  }
+  
+  .category-list button {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    background-color: #e9ecef;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .subcategory-list {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  
+  .subcategory-list li {
+    padding: 5px 0;
+  }
