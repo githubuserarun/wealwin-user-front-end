@@ -8,6 +8,8 @@
   
   .left-section {
     display: flex;
+    justify-content:flex-start;
+    gap: 40px;
     align-items: center;
   }
   
@@ -30,6 +32,10 @@
   
   nav ul li {
     margin-right: 1rem;
+  }
+
+  nav ul li:hover{
+    border-bottom:2px solid orange;
   }
   
   nav ul li a {
@@ -56,6 +62,40 @@
     border-radius: 4px;
     cursor: pointer;
   }
+button{
+  background-color: transparent;
+  border: none;
+}
+
+.model-div {
+  margin-bottom: 15px;
+}
+
+.model-div label {
+  display: inline-block;
+  width: 120px;
+  font-weight: bold;
+}
+
+.model-div input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.model-div input[type="password"] {
+  font-family: monospace;
+}
+
+.ml-3 {
+  margin-left: 10px;
+}
+
+  
+
+  
+  
+  
   
   /* .logout-button:hover {
     background-color: #0056b3;

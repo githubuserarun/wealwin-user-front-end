@@ -9,6 +9,9 @@
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
+  .product-card:hover{
+    border: 1px solid orange;
+  }
   
   .product-image {
     width: 100%;
@@ -16,6 +19,19 @@
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 16px;
+   
+  }
+
+  .image-container {
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    transition: transform 0.8s ease;
+  }
+  
+  .image-container img:hover {
+    transform: scale(1.2);
   }
   
   .product-name {
