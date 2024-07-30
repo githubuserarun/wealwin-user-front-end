@@ -81,10 +81,6 @@ const Header = ({ cartLength }) => {
     }
   };
 
-  useEffect(() => {
-    setCartCount(cartLength);
-  }, []);
-
   return (
     <header className="header">
       <div className="left-section">
