@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product ,callbackCart}) => {
   const navigate = useNavigate();
 
   const API_ADD_CART_URL = "http://localhost:5000/api/cart/add";
@@ -29,12 +29,12 @@ const ProductCard = ({ product }) => {
 
       if (response.data.status) {
         toast.success(response.data.message);
+        callbackCart();
         navigate("/cart");
       } else {
         toast.error(response.data.message || "Failed to add item to cart");
       }
     } catch (error) {
-      console.error("Error adding item to cart:", error);
       toast.error("Error adding item to cart:", error);
     }
   };

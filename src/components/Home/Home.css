@@ -17,6 +17,10 @@
   .catlist-hover:hover{
     border-left: 2px solid green;
   }
+  .name-hover:hover{
+    padding-left: 30px;
+    transition: 1s;
+  }
   .subcatlist-hover:hover{
     border-bottom: 2px solid rgb(255, 166, 0);
   }

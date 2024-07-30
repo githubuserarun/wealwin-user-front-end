@@ -4,11 +4,15 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { toast } from "react-toastify";
 import CartItem from "../CartItem/CartItem";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({cartLen,callbackCart }) => {
   const [cartData, setCartData] = useState([]);
 
   const API_CART_URL = "http://localhost:5000/api/cart/view";
+
+  const navigate = useNavigate();
 
   const getToken = () => {
     return Cookies.get("jwtToken");
@@ -53,7 +57,7 @@ const Cart = () => {
   return (
     <div>
       <div>
-        <Header />
+        <Header cartLength={cartLen}/>
         <hr className="mt-0" />
       </div>
       <div className="cart-list d-flex flex-wrap justify-content-center gap-5">
@@ -64,6 +68,7 @@ const Cart = () => {
               alt="empty cart"
             />
             <h1>Your cart is empty</h1>
+            <Button onClick={()=>navigate('/')}>continue to Shopping</Button>
           </div>
         ) : (
           cartData.map((item) => (
@@ -72,6 +77,7 @@ const Cart = () => {
               key={item._id}
               item={item}
               rerender={rerender}
+              callbackCart={callbackCart} 
             />
           ))
         )}

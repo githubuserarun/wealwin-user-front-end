@@ -3,16 +3,18 @@ import ProductCard from "../ProductCard/ProductCard";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import ReactSearchBox from "react-search-box";
+import Cookies from "js-cookie";
 import "./Home.css";
 
-const HomePage = () => {
+const HomePage = ({cartLen,callbackCart}) => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [subCategoriesData, setSubCategoriesData] = useState([]);
   const [openCategory, setOpenCategory] = useState(null);
   const [sidebarValue, setSidebarValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [searchValue, setSearchVlaue] = useState("");
+
+  const token = Cookies.get('jwtToken');
 
   const API_CAT_URL = "http://localhost:5000/api/category/view-cat";
   const API_SUBCAT_URL = "http://localhost:5000/api/category/view-subcat";
@@ -89,6 +91,7 @@ const HomePage = () => {
     );
   };
 
+
   useEffect(() => {
     fetchCategories();
     fetchSubCategories();
@@ -101,15 +104,11 @@ const HomePage = () => {
   useEffect(() => {
     fetchSearcFilteredProducts();
   }, [searchValue]);
-  // console.log(categoriesData);
-  // console.log(subCategoriesData);
-  // console.log(filteredData)
-  // console.log(sidebarValue)
 
   return (
     <div>
       <div>
-        <Header />
+        <Header cartLength={cartLen}  />
         <hr className="mt-0" />
       </div>
 
@@ -118,7 +117,7 @@ const HomePage = () => {
           <ul className="category-list">
             {categoriesData.map((category) => (
               <li className="catlist-hover" key={category._id}>
-                <button
+                <button className="name-hover"
                   onClick={() => {
                     toggleCategory(category._id);
                     setSidebarValue(category.category);
@@ -166,7 +165,7 @@ const HomePage = () => {
             ) : (
               <div className=" d-flex flex-wrap justify-content-around">
                 {filteredData.map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <ProductCard key={product._id} product={product} callbackCart={callbackCart}  />
                 ))}
               </div>
             )}

@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
-import {
-  validateUsername,
-  validateEmail,
-} from "../validators";
+import { validateUsername, validateEmail } from "../validators";
 import "./Header.css";
 import axios from "axios";
 
-const Header = () => {
-  
+const Header = ({ cartLength }) => {
   const token = Cookies.get("jwtToken");
   const [show, setShow] = useState(false);
-  //const [password, setPassword] = useState("");
-  const [modelName, setModelName] = useState('');
-  const [modelEmail, setModelEmail] = useState('');
+  const [modelName, setModelName] = useState("");
+  const [modelEmail, setModelEmail] = useState("");
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       Cookies.remove("jwtToken");
-      Cookies.remove("userName");
-      Cookies.remove("useremail");
       navigate("/login");
     }
   };
@@ -49,8 +42,7 @@ const Header = () => {
         );
         if (response.data.status) {
           toast.success(response.data.message);
-          setShow(false)
-          
+          setShow(false);
         } else {
           toast.error(response.data.error);
         }
@@ -64,31 +56,35 @@ const Header = () => {
     console.log(modelName);
   };
 
-  const onclickProfile = async ()=>{
-    setShow(true)
-    try{
-        const response = await axios.post("http://localhost:5000/api/auth/user",{},
+  const onclickProfile = async () => {
+    setShow(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/user",
+        {},
         {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-        if(response.data.status){
-            setModelName(response.data.userName);
-            setModelEmail(response.data.email);
-            console.log(response.data)
-
-        }else{
-            toast.error(response.data.error)
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
 
-    }catch(err){
-        toast.error(err);
+      if (response.data.status) {
+        setModelName(response.data.userName);
+        setModelEmail(response.data.email);
+        console.log(response.data);
+      } else {
+        toast.error(response.data.error);
+      }
+    } catch (err) {
+      toast.error(err);
     }
-  }
+  };
 
- 
+  useEffect(() => {
+    setCartCount(cartLength);
+  }, []);
+
   return (
     <header className="header">
       <div className="left-section">
@@ -103,9 +99,12 @@ const Header = () => {
             <li>
               <a href="/">Home</a>
             </li>
-            <li>
-              <a href="/cart">Cart</a>
-            </li>
+            <a href="/cart" className="cart-link">
+              Cart
+              {cartLength > 0 && (
+                <span className="cart-count">{cartLength}</span>
+              )}
+            </a>
           </ul>
         </nav>
       </div>
