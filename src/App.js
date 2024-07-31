@@ -53,7 +53,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />}  />
           <Route path="/" element={<ProtectedRoute element={<HomePage cartLen={cartLength} callbackCart={fetchCartLength}/>} />} />
           <Route path="/cart" element={<ProtectedRoute element={<Cart cartLen={cartLength} callbackCart={fetchCartLength} />} />} />
-          
         </Routes>
       </Router>
       <ToastContainer />

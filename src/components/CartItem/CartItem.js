@@ -3,11 +3,14 @@ import "./CartItem.css";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = ({ item, rerender, callbackCart }) => {
   const API_DEL_CART_URL = `http://localhost:5000/api/cart/del/${item._id}`;
   const API_UPD_CART_URL = "http://localhost:5000/api/cart/update";
+  const API_SOLD_URL = `http://localhost:5000/api/cart/buy/${item._id}`;
 
+  const navigate = useNavigate();
   const getToken = () => {
     return Cookies.get("jwtToken");
   };
@@ -63,6 +66,27 @@ const CartItem = ({ item, rerender, callbackCart }) => {
     }
   };
 
+  const placeOrder = () => {
+    if (window.confirm("Are you sure you want to buy the item?")) {
+      buyFun();
+    }
+  };
+
+  const buyFun = async () => {
+    try {
+      const response = await axios.put(API_SOLD_URL);
+      if (response.data.status) {
+        toast.success(response.data.message);
+        console.log(response)
+        rerender();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
   return (
     <div className="cart-item">
       <div className="cart-item-image">
@@ -86,7 +110,9 @@ const CartItem = ({ item, rerender, callbackCart }) => {
           <button className="remove-btn" onClick={handleremove}>
             Remove
           </button>
-          <button className="buy-btn">Buy Now</button>
+          <button className="buy-btn" onClick={placeOrder}>
+            Buy Now
+          </button>
         </div>
       </div>
     </div>
