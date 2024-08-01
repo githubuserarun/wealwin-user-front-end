@@ -7,10 +7,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* border: 1px solid orange; */
+    
   }
   .product-card:hover{
-    border: 1px solid orange;
+    transition: box-shadow 0.3s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   }
   
   .product-image {
@@ -67,9 +69,13 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    
   }
   
   .add-to-cart-btn:hover {
-    background-color: #45a049;
+    background-color: #37c43e;
+    transition: background-color 0.8s;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition:transform 1s;
   }

@@ -95,12 +95,14 @@ const Header = ({ cartLength }) => {
             <li>
               <a href="/">Home</a>
             </li>
-            <a href="/cart" className="cart-link">
-              Cart
-              {cartLength > 0 && (
-                <span className="cart-count">{cartLength}</span>
-              )}
-            </a>
+            <li>
+              <a href="/cart" className="cart-link">
+                Cart
+                {cartLength > 0 && (
+                  <span className="cart-count">{cartLength}</span>
+                )}
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
